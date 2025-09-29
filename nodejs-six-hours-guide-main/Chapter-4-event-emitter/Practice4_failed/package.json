@@ -1,0 +1,16 @@
+{
+  "name": "practice4",
+  "version": "1.0.0",
+  "description": "simple authorization",
+  "main": "index.js",
+  "scripts": {
+    "start": "node auth.js",
+    "dev": "nodemon auth.js"
+  },
+  "keywords": [],
+  "author": "thefireatom",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^3.0.2"
+  }
+}
