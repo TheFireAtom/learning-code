@@ -1,0 +1,26 @@
+Stack memory - variables (local), function data call. LIFO (Last In First Out). 
+void functionExample() {
+    int x = 10; // x is stored in the stack memory
+}
+
+Heap memory - for pointers basically. Dynamic memory, and be changed in size. In C++ we use "new" keyword for creating dynamic objects.
+void functionExample() {
+    int* p = new int; // dynamically allocated int in heap memory
+    *p = 10;
+    // more code
+    delete p; // deallocate memory
+}
+
+Data segment - two parts: initialized data dn uninitialized data.
+// Initialized data segment
+int globalVar = 10; // global variables
+static int staticVar = 10; // static local variables
+const int constVar = 10; // constant variables with value
+
+// Uninitialized data segment
+int globalVar; // uninitialized global variables
+
+Code segment - executable code that you as the developer write for machine to compile 
+void functionExample() {
+    // The machine code for this function is stored in the code segment.
+}
