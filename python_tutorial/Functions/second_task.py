@@ -10,6 +10,8 @@ def triangle(dir, a):
         lt(60)
         fd(a)
         rt(120)
+        rt(90)
+        lt(90)
         end_fill()
     elif dir == 'up':
         begin_fill()
@@ -28,6 +30,7 @@ def triangle(dir, a):
         bk(a)
         lt(60)
         fd(a)
+        rt(90)
         end_fill()
     elif dir == 'lt':
         begin_fill()
@@ -37,7 +40,7 @@ def triangle(dir, a):
         fd(a)
         rt(60)
         bk(a)
+        lt(90)
         end_fill()
-    done()
 
 triangle('lt', 90)
