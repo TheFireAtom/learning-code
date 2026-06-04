@@ -75,12 +75,19 @@ for m in range(72):
 end_fill()
 # sgoto(0, 0)
 
-# ground 
-sgoto(-500, 0)
-color("chocolate4")
-begin_fill()
-rectangle(1000, 500)
-end_fill()
+def random_star(count):
+    random_star_coef_x = random.randint(-4, 4)
+    random_star_coef_y = random.randint(-4, 4)
+    sgoto(100* random_star_coef_x, 250 * random_star_coef_y)
+    begin_fill()
+    color("white")
+    if len()
+    for m in range(72):
+        fd(5)
+        lt(5)
+    end_fill()
+
+already_exist = []
 
 def random_tree():
     if len(already_exist) >= 9:
@@ -109,13 +116,17 @@ def random_tree():
     triangle('lt', 45)
     sgoto(tree_coef*random_tree - 10, new_tree_coef*random_tree)
     triangle('up', 45)
-    
 
-
-already_exist = []
-# random tree
+# random trees
 for _ in range(1, how_many_trees):
     random_tree()
+    
+# ground 
+sgoto(-500, 0)
+color("chocolate4")
+begin_fill()
+rectangle(1000, 500)
+end_fill()
 
 done()
 
