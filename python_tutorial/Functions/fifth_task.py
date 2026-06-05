@@ -3,10 +3,12 @@ import random
 
 tree_coef = 100
 bgcolor("black")
-how_many_trees = int(input("write how many trees do you want to draw: "))
+how_many_trees = int(input("Write how many trees do you want to draw: "))
+how_many_stars = int(input("Write how many stars do you want to draw: "))
+trees_already_exist = []
+stars_already_exist = []
 
 def triangle(dir, a):
-    color("green")
     if dir == 'dn':
         begin_fill()
         fd(a)
@@ -50,8 +52,9 @@ def triangle(dir, a):
 
 def sgoto(x, y):
     up()
-    width(2)
+    width(1)
     goto(x, y)
+    down()
 
 def rectangle(a, b):
     begin_fill()
@@ -65,47 +68,59 @@ def rectangle(a, b):
     rt(90)
     end_fill()
 
-# moon
-sgoto(300, 250)
-begin_fill()
-color("white")
-for m in range(72):
-    fd(5)
-    lt(5)
-end_fill()
-# sgoto(0, 0)
-
-def random_star(count):
-    random_star_coef_x = random.randint(-4, 4)
-    random_star_coef_y = random.randint(-4, 4)
-    sgoto(100* random_star_coef_x, 250 * random_star_coef_y)
-    begin_fill()
+def draw_star(size):
     color("white")
-    if len()
-    for m in range(72):
-        fd(5)
-        lt(5)
+    begin_fill()
+    for _ in range(5):
+        fd(size)
+        rt(144)
     end_fill()
 
-already_exist = []
+# Logic for spawning random stars
+def random_star():
+    if len(stars_already_exist) >= how_many_stars:
+        print("All stars positions are full!!!")
+        return
+    
+    random_star = random.randint(0, 20) 
 
+    while random_star in stars_already_exist:
+        random_star = random.randint(0, 20)
+
+    stars_already_exist.append(random_star)
+    print(f"Drawing unique star at position: {random_star}")
+
+    random_star_coef_x = random.randint(-20, 20)
+    random_star_coef_y = random.randint(2, 10)
+    random_star_main_coef = 25
+    sgoto(random_star_main_coef * random_star_coef_x, random_star_main_coef * random_star_coef_y)
+    
+    draw_star(20)
+
+    # for _ in range(72):
+    #     fd(1)
+    #     lt(5)
+    # end_fill()
+
+# logic for spawing random trees
 def random_tree():
-    if len(already_exist) >= 9:
+    if len(trees_already_exist) >= how_many_trees:
         print("All tree positions are full!!!")
         return
 
     random_tree = random.randint(-4, 4)
 
-    while random_tree in already_exist:
+    while random_tree in trees_already_exist:
         random_tree = random.randint(-4, 4)
 
-    already_exist.append(random_tree)
+    trees_already_exist.append(random_tree)
     print(f"Drawing unique tree at position: {random_tree}")
 
     new_tree_coef = 25
     color("brown")
     sgoto(tree_coef*random_tree, random_tree*new_tree_coef)
     rectangle(25, 100)
+    color("green")
     sgoto(25 + tree_coef*random_tree, random_tree*new_tree_coef)
     triangle('rt', 45)
     sgoto(25 + tree_coef*random_tree, random_tree*new_tree_coef-45)
@@ -117,16 +132,30 @@ def random_tree():
     sgoto(tree_coef*random_tree - 10, new_tree_coef*random_tree)
     triangle('up', 45)
 
-# random trees
-for _ in range(1, how_many_trees):
-    random_tree()
-    
+# moon
+sgoto(300, 250)
+begin_fill()
+color("white")
+for m in range(72):
+    fd(5)
+    lt(5)
+end_fill()
+# sgoto(0, 0)
+
 # ground 
 sgoto(-500, 0)
 color("chocolate4")
 begin_fill()
 rectangle(1000, 500)
 end_fill()
+
+# random trees
+for _ in range(how_many_trees):
+    random_tree()
+
+# random stars
+for _ in range(how_many_stars):
+    random_star()
 
 done()
 
