@@ -1,20 +1,13 @@
 import string
 
-punctuation_set = set(string.punctuation)
+s = input("Write your sentence here: ")
 
-s = input("Enter string here: ")
+sspace_pos = []
 
-# locations = [index for index, char in enumerate(s) if char in punctuation_set]
+for index, char in enumerate(s):
+    if char == " ":
+        sspace_pos.append(index)
 
-first_word = ""
+sspace_pos = sspace_pos[-1]
 
-for char in s:
-    if char == " " or char in punctuation_set:
-        break
-
-    first_word += char
-
-print(first_word)
-
-
-        
+print(s[:sspace_pos+1])
