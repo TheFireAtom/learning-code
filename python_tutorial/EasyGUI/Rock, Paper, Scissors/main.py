@@ -1,18 +1,45 @@
 import easygui
 import random
+import os 
+from PIL import Image
 
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))   
+ASSETS_DIR = os.path.join(BASE_DIR, "assets")
+
+rock_img_path = os.path.join(ASSETS_DIR, "rock.gif")
+paper_img_path = os.path.join(ASSETS_DIR, "paper.gif")
+scissors_img_path = os.path.join(ASSETS_DIR, "scissors.gif")
+
+size = (64, 64)
+
+img_rock = Image.open(rock_img_path).resize(size)
+img_paper = Image.open(paper_img_path).resize(size)
+img_scissors = Image.open(scissors_img_path).resize(size)
+
+small_rock = os.path.join(ASSETS_DIR, "rock_small.gif")
+small_paper = os.path.join(ASSETS_DIR, "paper_small.gif")
+small_scissors = os.path.join(ASSETS_DIR, "scissors_small.gif")
+
+img_rock.save(small_rock)
+img_paper.save(small_paper)
+img_scissors.save(small_scissors)
 
 names = ("Rock", "Paper", "Scissors")
-
 player_score = 0
 bot_score = 0
 
-easygui.buttonbox(
-    title="Test",
-    msg="Something",
-    choices=["Test"],
-    images=["C:\Programming_stuff\learning-code\python_tutorial\EasyGUI\Rock, Paper, Scissors\assets\Hello_Kitty_Pink_GIF.gif"]
-)
+# print("Current folder: ", os.getcwd())
+# if os.path.exists(ASSETS_DIR + "assets"):
+#     print("Path exist")
+# else:
+#     print("Path do not exist")
+
+# easygui.buttonbox(
+#     title="Test",
+#     msg="Something",
+#     choices=["Test"],
+#     images=[rock_img_path]
+# )
 
 start = easygui.msgbox("Welcome to Rock, Paper, Scissors", ok_button="Okay")
 if start is None:
@@ -23,15 +50,15 @@ def player_choice_func():
     player_choice = easygui.buttonbox(
         title="Rock, Paper, Scissors", 
         msg="Choose your weapon: ",
-        choices=["Rock", "Paper", "Scissors"], 
-        images=["assets/rock.gif", "assets/paper.gif", "assets/scissors.gif"]
+        choices=[], 
+        images=[small_rock, small_paper, small_scissors]
     )
     
-    if player_choice == names[0]:
+    if player_choice == small_rock:
         return 1
-    elif player_choice == names[1]:
+    elif player_choice == small_paper:
         return 2
-    elif player_choice == names[2]:
+    elif player_choice == small_scissors:
         return 3
     elif player_choice is None:
         return None
@@ -101,12 +128,12 @@ for _ in range(3):
         easygui.msgbox("Game cancelled.")
         exit()
     play_round(player, bot)
+    easygui.textbox("Player score: ", text=str(player_score))
+    easygui.textbox("Bot score: ", text=str(bot_score))
+    if bot_score == 2 or player_score == 2:
+        results()
 
 results()
-
-
-
-    # three_rounds(player, bot)
     
     
 
