@@ -1,6 +1,6 @@
 f = None
 try:
-    f = open("Exeptions\data.txt", "r")
+    f = open("Exceptions\data.txt", "r")
     content = f.read()
 except FileNotFoundError:
     print("File not found!")
