@@ -1,0 +1,11 @@
+nums = [5, 2, 9, 1, 5, 6]
+nums.sort()
+print(nums)
+nums.sort(reverse=True)
+print(nums)
+copy = sorted(nums)
+print(copy)
+copy.reverse()
+print(copy)
+print(nums[::-1])
+print(nums)
